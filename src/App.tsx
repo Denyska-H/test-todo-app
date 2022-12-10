@@ -1,7 +1,7 @@
-import React from 'react';
+import { Todos } from './components';
 
 function App() {
-  return <div className="App">Lorem ipsum dolor sit.</div>;
+  return <Todos />;
 }
 
 export default App;
