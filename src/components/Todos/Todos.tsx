@@ -1,71 +1,36 @@
-import { FC, useRef, useState, useEffect } from 'react';
+import { FC, useRef, useEffect } from 'react';
+
+import { useAppDispatch, useAppSelector } from '../../hooks/typeHooks';
+import { addEditedTodo, addTodo, setValue, toggleSubmit } from '../../redux/todoSlice';
+
 import { TodoList } from '../TodoList';
 import { Input, SubmitButton, TextField } from './styled';
-import { ITodosProps } from './types';
 
 const Todos: FC = () => {
-  const [todos, setTodos] = useState<ITodosProps[]>([]);
-  const [value, setValue] = useState('');
-  const [toggleSubmit, setToggleSubmit] = useState(true);
-  const [isEditableTodo, setIsEditableTodo] = useState('');
+  const dispatch = useAppDispatch();
+  const payloadValue = useAppSelector((state) => state.todos.value);
+  const payloadSubmit = useAppSelector((state) => state.todos.toggleSubmit);
+
+  const addTask = () => {
+    if (!payloadValue) alert(`😚 Please enter your To-Do task 😚`);
+    else if (payloadValue && !payloadSubmit) {
+      dispatch(addEditedTodo(payloadValue));
+      dispatch(toggleSubmit(true));
+      dispatch(setValue(''));
+    } else {
+      dispatch(addTodo(payloadValue));
+      dispatch(setValue(''));
+    }
+  };
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-    setValue(e.target.value);
+    dispatch(setValue(e.target.value));
   };
 
   const handleEnterDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key === 'Enter') addTodo();
-  };
-
-  const addTodo = () => {
-    if (!value) {
-      alert(`😚 Please enter your To-Do task 😚`);
-    } else if (value && !toggleSubmit) {
-      setTodos(
-        todos.map((todo) => {
-          if (todo.id === isEditableTodo) return { ...todo, value };
-          return todo;
-        }),
-      );
-      setToggleSubmit(true);
-      setValue('');
-    } else {
-      setTodos([
-        ...todos,
-        {
-          id: new Date().toISOString(),
-          value,
-          completed: false,
-        },
-      ]);
-      setValue('');
-    }
-  };
-
-  const removeTodo = (id: string) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const toggleTodo = (id: string) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id !== id) return todo;
-
-        return {
-          ...todo,
-          completed: !todo.completed,
-        };
-      }),
-    );
-  };
-
-  const editTodo = (id: string) => {
-    const newEditableTodo = todos.find((todo) => todo.id === id);
-    if (newEditableTodo) setValue(newEditableTodo.value);
-    setIsEditableTodo(id);
-    setToggleSubmit(false);
+    if (e.key === 'Enter') addTask();
   };
 
   useEffect(() => {
@@ -77,14 +42,14 @@ const Todos: FC = () => {
       <TextField>
         <Input
           placeholder="Enter todo here"
-          value={value}
+          value={payloadValue}
           ref={inputRef}
           onChange={handleChange}
           onKeyDown={handleEnterDown}
         />
-        <SubmitButton onClick={addTodo}>Submit</SubmitButton>
+        <SubmitButton onClick={addTask}>Submit</SubmitButton>
       </TextField>
-      <TodoList items={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} editTodo={editTodo} />
+      <TodoList />
     </>
   );
 };

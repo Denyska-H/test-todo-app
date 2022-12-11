@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Input = styled.input`
 	font-size: 14px;
   padding: 8px;
-  border: 2px solid #EDECED;
+  border: 2px solid #d9d9d9;
 	width: 80%;
 	border-radius: 5px 0 0 5px;
 	:focus {

@@ -5,7 +5,7 @@ export const TodoPanel = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	padding: 20px;
-	border: 2px solid #EDECED;
+	border: 2px solid #d9d9d9;
 	border-bottom: 0px;
 
 	:first-child {
@@ -13,11 +13,11 @@ export const TodoPanel = styled.div`
 	}
 
 	:nth-child(2n + 1) {
-		background-color: #f2f2f1;
+		background-color: #dcdcdcb0;
 	}
 
 	&:last-child {
-		border-bottom: 2px solid #EDECED;
+		border-bottom: 2px solid #d9d9d9;
 	}
 `;
 
