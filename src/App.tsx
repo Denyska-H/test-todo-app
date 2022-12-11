@@ -1,7 +1,15 @@
-import { Todos } from './components';
+import { Wrapper, Todos } from './components';
+import GlobalStyle from './globalStyles';
 
 function App() {
-  return <Todos />;
+  return (
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <Todos />
+      </Wrapper>
+    </>
+  );
 }
 
 export default App;

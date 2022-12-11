@@ -4,7 +4,7 @@ import { ITodoListProps } from './types';
 
 const TodoList: FC<ITodoListProps> = ({ items, removeTodo, toggleTodo, editTodo }) => {
   return (
-    <>
+    <div>
       {items.map((todo) => (
         <TodoItem
           key={todo.id}
@@ -14,7 +14,7 @@ const TodoList: FC<ITodoListProps> = ({ items, removeTodo, toggleTodo, editTodo 
           {...todo}
         />
       ))}
-    </>
+    </div>
   );
 };
 

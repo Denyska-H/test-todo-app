@@ -1,5 +1,6 @@
 import { FC, useRef, useState, useEffect } from 'react';
 import { TodoList } from '../TodoList';
+import { Input, SubmitButton, TextField } from './styled';
 import { ITodosProps } from './types';
 
 const Todos: FC = () => {
@@ -73,10 +74,16 @@ const Todos: FC = () => {
 
   return (
     <>
-      <div>
-        <input value={value} ref={inputRef} onChange={handleChange} onKeyDown={handleEnterDown} />
-        <button onClick={addTodo}>Submit</button>
-      </div>
+      <TextField>
+        <Input
+          placeholder="Enter todo here"
+          value={value}
+          ref={inputRef}
+          onChange={handleChange}
+          onKeyDown={handleEnterDown}
+        />
+        <SubmitButton onClick={addTodo}>Submit</SubmitButton>
+      </TextField>
       <TodoList items={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} editTodo={editTodo} />
     </>
   );
