@@ -1,10 +1,7 @@
 import { FC } from 'react';
 import { useAppSelector } from '../../hooks/typeHooks';
 import { Container, Header, WrapperEl } from './styled';
-
-type WrapperProps = {
-  children: JSX.Element;
-};
+import { WrapperProps } from './types';
 
 const Wrapper: FC<WrapperProps> = ({ children }) => {
   const todos = useAppSelector((state) => state.todos.list);
