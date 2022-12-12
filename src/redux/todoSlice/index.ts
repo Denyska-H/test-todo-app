@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getTodosFromLS } from '../../utils/getTodosFromLS';
 import { TodosState } from './types';
 
+const { list } = getTodosFromLS();
+
 const initialState: TodosState = {
-  list: [],
+  list,
 	value: '',
 	id: '',
 	toggleSubmit: true,

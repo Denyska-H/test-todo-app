@@ -35,7 +35,7 @@ const Todos: FC = () => {
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, []);
+  }, [addTask]);
 
   return (
     <>

@@ -28,10 +28,11 @@ export const Checkbox = styled.input.attrs({type: "checkbox"})`
   height: 15px;
   width: 15px;
 	appearance: none;
-	background-color: #d5d5d5;
+	background-color: #d1d1d1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 3px;
 
 	::after {
 		font-family: "Font Awesome 5 Free";
