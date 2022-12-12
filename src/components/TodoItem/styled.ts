@@ -19,6 +19,11 @@ export const TodoPanel = styled.div`
 	&:last-child {
 		border-bottom: 2px solid #d9d9d9;
 	}
+
+	@media (max-width: 500px) {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
 `;
 
 export const Checkbox = styled.input.attrs({type: "checkbox"})`
@@ -54,10 +59,24 @@ export const Checkbox = styled.input.attrs({type: "checkbox"})`
 
 export const Text = styled.span`
 	font-size: 17px;
+	width: 300px;
+	overflow-wrap: break-word;
+	margin-right: 20px;
+
+	@media (max-width: 768px) {
+		width: 200px;
+	}
+	
+	@media (max-width: 638px) {
+		width: 100px;
+	}
 `;
 
 export const Buttons = styled.div`
 	display: flex;
+	@media (max-width: 500px) {
+		margin-top: 13px;
+	}
 `;
 
 export const ButtonEdit = styled.button`
@@ -70,7 +89,6 @@ export const ButtonEdit = styled.button`
 	align-items: center;
 	justify-content: center;
 	transition: 0.2s;
-
 	&:hover {
 		background-color: green;
 	}
@@ -85,7 +103,6 @@ export const ButtonDelete = styled.button`
 	align-items: center;
 	justify-content: center;
 	transition: 0.2s;
-	
 	&:hover {
 		background-color: red;
 	}

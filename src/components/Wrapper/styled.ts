@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const WrapperEl = styled.div`
 	margin: 50px auto;
 	width: 50%;
+	padding: 20px;
+	@media (max-width: 1140px) {
+		width: 70%;
+	}
+
 `
 
 export const Header = styled.header`
